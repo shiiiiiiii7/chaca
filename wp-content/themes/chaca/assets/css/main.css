@@ -1,0 +1,1207 @@
+/* ============================================================
+   リセット・基本設定
+   ============================================================ */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    overflow-x: hidden;
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #333;
+    background-color: #ffffff;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ============================================================
+   ヘッダー
+   ============================================================ */
+
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 24px 40px;
+    z-index: 100;
+    transition: background-color 0.3s ease;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+.transparent-header .site-header {
+    background-color: transparent;
+    border-bottom: none;
+}
+
+.header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.site-logo a {
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+    color: #333;
+}
+
+.transparent-header .site-logo a {
+    color: #fff;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: 32px;
+}
+
+.nav-list a {
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    color: #333;
+    display: block;
+}
+
+.transparent-header .nav-list a {
+    color: #fff;
+}
+
+.nav-list a:hover {
+    opacity: 0.6;
+}
+
+/* ナビゲーション画像（Home・Shop・About） */
+.nav-list a img {
+    height: 16px;
+    width: auto;
+    display: block;
+    transition: opacity 0.3s ease;
+}
+
+.nav-list a:hover img {
+    opacity: 0.5;
+}
+
+.transparent-header .nav-list a img {
+    filter: brightness(0) invert(1);
+}
+
+/* カートバッジ */
+.nav-cart-link {
+    position: relative;
+    display: inline-block;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    width: 18px;
+    height: 18px;
+    background-color: #fff;
+    color: #fa0404;
+    font-size: 10px;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    letter-spacing: 0;
+}
+
+.transparent-header .cart-count {
+    background-color: #fff;
+    color: #111;
+}
+
+/* ============================================================
+   フッター
+   ============================================================ */
+
+.site-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 40px;
+    border-top: 1px solid #333;
+    text-align: center;
+    background-color: #111;
+    z-index: 50;
+}
+
+.footer-inner p {
+    font-size: 13px;
+    color: #666;
+}
+
+/* ============================================================
+   ヒーローセクション
+   ============================================================ */
+
+.site-main {
+    padding: 0;
+    margin: 0;
+}
+
+.hero-spacer {
+    height: 50vh;
+}
+
+.hero {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.hero-panel {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background-image: url('../images/oranjet.jpg');
+    background-size: 200%;
+    background-position: center;
+    transform: scale(1.1);
+}
+
+.hero-panel-left {
+    left: 0;
+    background-position: left center;
+}
+
+.hero-panel-right {
+    right: 0;
+    background-position: right center;
+}
+
+.hero.is-split .hero-panel-left {
+    transform: translateX(-100%);
+}
+
+.hero.is-split .hero-panel-right {
+    transform: translateX(100%);
+}
+
+.hero.is-loaded .hero-panel {
+    transform: scale(1);
+}
+
+.hero.is-loaded.is-split .hero-panel-left {
+    transform: translateX(-100%) scale(1);
+}
+
+.hero.is-loaded.is-split .hero-panel-right {
+    transform: translateX(100%) scale(1);
+}
+
+.hero-inner {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: #fff;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease 0.5s, transform 1s ease 0.5s;
+}
+
+.hero.is-loaded .hero-inner {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hero.is-split .hero-inner {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.hero-sub {
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    margin-bottom: 16px;
+    opacity: 0.9;
+}
+
+.hero-title {
+    font-size: 72px;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+    margin-bottom: 48px;
+}
+
+.hero-scroll {
+    position: absolute;
+    bottom: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 1s ease 1s;
+}
+
+.hero.is-loaded .hero-scroll {
+    opacity: 1;
+}
+
+.hero.is-split .hero-scroll {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.hero-scroll-text {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+}
+
+.hero-scroll-line {
+    display: block;
+    width: 1px;
+    height: 48px;
+    background-color: #fff;
+    animation: scrollLine 1.5s ease infinite;
+}
+
+@keyframes scrollLine {
+    0%   { transform: scaleY(0); transform-origin: top; }
+    50%  { transform: scaleY(1); transform-origin: top; }
+    51%  { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ============================================================
+   スクロール後コンテンツ
+   ============================================================ */
+
+.hero-below {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1a1a1a;
+}
+
+.hero-below-inner {
+    text-align: center;
+    font-size: 16px;
+    line-height: 2.5;
+    letter-spacing: 0.1em;
+    color: #fff;
+}
+
+/* ============================================================
+   About キャッチコピー
+   ============================================================ */
+
+.about-catch {
+    background-color: #111;
+    padding: 160px 40px;
+    text-align: center;
+}
+
+.about-catch-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.about-catch-label {
+    font-size: 11px;
+    letter-spacing: 0.5em;
+    color: #888;
+    text-transform: uppercase;
+}
+
+.about-catch-title {
+    font-size: 52px;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    line-height: 1.7;
+    color: #f5f0e8;
+}
+
+.about-catch-body {
+    font-size: 15px;
+    line-height: 2.4;
+    letter-spacing: 0.08em;
+    color: #aaa;
+}
+
+/* ============================================================
+   About 工程ストーリー
+   ============================================================ */
+
+.about-process {
+    background-color: #111;
+    padding: 40px 0 120px;
+}
+
+.about-process-step {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 580px;
+    border-top: 1px solid #222;
+}
+
+.about-process-step--reverse {
+    direction: rtl;
+}
+
+.about-process-step--reverse .about-process-text,
+.about-process-step--reverse .about-process-image {
+    direction: ltr;
+}
+
+.about-process-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px;
+    gap: 20px;
+}
+
+.about-process-num {
+    font-size: 60px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    color: #2a2a2a;
+    line-height: 1;
+}
+
+.about-process-en {
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    color: #666;
+    text-transform: uppercase;
+}
+
+.about-process-title {
+    font-size: 34px;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    line-height: 1.7;
+    color: #f5f0e8;
+}
+
+.about-process-body {
+    font-size: 14px;
+    line-height: 2.4;
+    color: #888;
+    letter-spacing: 0.05em;
+}
+
+.about-process-image {
+    overflow: hidden;
+    background-color: #1a1a1a;
+}
+
+.about-process-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s ease;
+}
+
+.about-process-step:hover .about-process-image img {
+    transform: scale(1.04);
+}
+
+/* ============================================================
+   About フィロソフィー
+   ============================================================ */
+
+.about-philosophy {
+    background-color: #0d0d0d;
+    padding: 160px 40px;
+}
+
+.about-philosophy-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about-philosophy-line {
+    font-size: 22px;
+    letter-spacing: 0.15em;
+    line-height: 2.4;
+    color: #f5f0e8;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.about-philosophy-line.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ============================================================
+   About Shop CTA
+   ============================================================ */
+
+.about-cta {
+    height: 100vh;
+    background-image: url(../images/chaca-product-display-05.jpeg);
+    background-size: 100%;
+    background-position: center;
+    align-content: center;
+    text-align: center;
+}
+
+.about-cta-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+}
+
+.about-cta-label {
+    font-size: 11px;
+    letter-spacing: 0.5em;
+    color: #999;
+    text-transform: uppercase;
+}
+
+.about-cta-title {
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    line-height: 1.8;
+    color: #1a1a1a;
+}
+
+.about-cta-button {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 18px 64px;
+    border: 1px solid #1a1a1a;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    color: #1a1a1a;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.about-cta-button:hover {
+    background-color: #1a1a1a;
+    color: #f5f0e8;
+    opacity: 1;
+}
+
+/* ============================================================
+   スクロールアニメーション 共通
+   ============================================================ */
+
+.js-fadeup {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.js-fadeup.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.js-slide-right {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.js-slide-right.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.js-slide-left {
+    opacity: 0;
+    transform: translateX(40px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.js-slide-left.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ============================================================
+   ショップページ
+   ============================================================ */
+
+.shop-main {
+    min-height: 100vh;
+    padding-top: 80px;
+}
+
+.shop-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 40px;
+}
+
+.products-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    padding-bottom: 30px;
+}
+
+.product-item a {
+    display: block;
+}
+
+.product-item a:hover .product-image img {
+    transform: scale(1.03);
+    border-radius: 5px;
+}
+
+.product-image {
+    overflow: hidden;
+    margin-bottom: 16px;
+    aspect-ratio: 1 / 1;
+    border-radius: 5px;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.product-info {
+    padding: 0 4px;
+}
+
+.product-name {
+    font-size: 15px;
+    font-weight: normal;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+}
+
+.product-price {
+    font-size: 14px;
+    color: #666;
+}
+
+.product-stock {
+    font-size: 12px;
+    color: #999;
+    margin-top: 4px;
+}
+
+.no-products {
+    text-align: center;
+    color: #999;
+    padding: 60px 0;
+}
+
+/* ============================================================
+   商品詳細ページ
+   ============================================================ */
+
+.single-product-main {
+    padding: 120px 40px 100px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.product-detail {
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+}
+
+.product-detail-image {
+    flex: 1;
+}
+
+.product-detail-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 5px;
+}
+
+.product-detail-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.product-detail-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: #aaa;
+    text-transform: uppercase;
+}
+
+.product-detail-name {
+    font-size: 28px;
+    font-weight: normal;
+    letter-spacing: 0.1em;
+    line-height: 1.4;
+}
+
+.product-detail-price {
+    font-size: 18px;
+    letter-spacing: 0.1em;
+}
+
+.product-detail-price .woocommerce-Price-amount {
+    font-size: inherit;
+}
+
+.product-detail-stock {
+    font-size: 13px;
+    color: #888;
+    letter-spacing: 0.1em;
+}
+
+.product-detail-description {
+    font-size: 14px;
+    line-height: 2;
+    color: #555;
+    border-top: 1px solid #222;
+    padding-top: 20px;
+}
+
+/* カートに追加ボタン */
+.product-detail-cart a.single_add_to_cart_button {
+    display: block;
+    width: 100%;
+    padding: 16px 24px;
+    background-color: #0889ec;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    border: none;
+    border-radius: 5px;
+    line-height: 1;
+    box-sizing: border-box;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.product-detail-cart a.single_add_to_cart_button:hover {
+    background-color: #0358ec;
+    color: #fff;
+    text-decoration: none;
+}
+
+.product-detail-cart a.single_add_to_cart_button.loading {
+    opacity: 0.6;
+    pointer-events: none;
+    cursor: wait;
+}
+
+.product-detail-cart a.single_add_to_cart_button.disabled,
+.product-detail-cart a.single_add_to_cart_button[aria-disabled="true"] {
+    background-color: #555;
+    color: #999;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* 買い物かごに移動ボタン */
+.product-detail-cart a.added_to_cart.wc-forward {
+    display: block;
+    width: 100%;
+    padding: 14px 24px;
+    background-color: transparent;
+    color: #111;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    border: 1px solid #333;
+    border-radius: 5px;
+    margin-top: 8px;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.product-detail-cart a.added_to_cart.wc-forward:hover {
+    background-color: #080808;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* ============================================================
+   固定ページ共通
+   ============================================================ */
+
+.page-main {
+    min-height: 100vh;
+    padding-top: 100px;
+}
+
+.page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 40px;
+}
+
+
+/* ============================================================
+   空カートページ
+   ============================================================ */
+
+.cart-empty-content {
+    text-align: center;
+    padding: 80px 40px 60px;
+}
+
+.cart-empty-message {
+    font-size: 14px;
+    color: #888;
+    letter-spacing: 0.1em;
+    margin-bottom: 30px;
+}
+
+.cart-empty-button {
+    display: inline-block;
+    padding: 16px 48px;
+    background-color: #111;
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    transition: background-color 0.3s ease;
+}
+
+.cart-empty-button:hover {
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* クロスセル（新登場） */
+.woocommerce-cart .cross-sells {
+    padding: 0 40px 100px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.woocommerce-cart .cross-sells > h2 {
+    font-size: 16px;
+    font-weight: normal;
+    letter-spacing: 0.2em;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.woocommerce-cart .cross-sells ul.products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.woocommerce-cart .cross-sells ul.products li.product {
+    padding: 0;
+    margin: 0;
+}
+
+.woocommerce-cart .cross-sells ul.products li.product img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.woocommerce-cart .cross-sells .woocommerce-loop-product__title {
+    font-size: 13px;
+    font-weight: normal;
+    letter-spacing: 0.1em;
+    margin-top: 12px;
+    margin-bottom: 6px;
+}
+
+.woocommerce-cart .cross-sells .price {
+    font-size: 12px;
+    color: #888;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.woocommerce-cart .cross-sells a.button.add_to_cart_button {
+    display: block;
+    width: 100%;
+    padding: 12px 24px;
+    background-color: #111;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    border-radius: 0;
+    border: none;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease;
+}
+
+.woocommerce-cart .cross-sells a.button.add_to_cart_button:hover {
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* ============================================================
+   カートページ（商品あり）
+   ============================================================ */
+
+.cart-wrapper {
+    padding-bottom: 0;
+}
+
+.cart-form {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 40px 0;
+}
+
+/* 商品リストヘッダー */
+.cart-items-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #222;
+    margin-bottom: 8px;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: #888;
+    text-transform: uppercase;
+}
+
+/* 商品アイテム */
+.cart-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 20px;
+    align-items: center;
+    padding: 24px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-item-image {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.cart-item-image img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    display: block;
+}
+
+.cart-item-remove {
+    font-size: 12px;
+    color: #aaa;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.cart-item-remove:hover {
+    color: #111;
+}
+
+.cart-item-name {
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    margin: 0;
+}
+
+.cart-item-name a {
+    color: #111;
+    text-decoration: none;
+}
+
+.cart-item-name a:hover {
+    text-decoration: underline;
+}
+
+.cart-item-quantity .qty {
+    width: 56px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 0;
+    text-align: center;
+    font-size: 13px;
+}
+
+.cart-item-subtotal {
+    font-size: 13px;
+}
+
+/* カート更新ボタン */
+.cart-actions {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.cart-update-button {
+    padding: 12px 24px;
+    background-color: transparent;
+    color: #888;
+    border: 1px solid #ddd;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cart-update-button:hover {
+    color: #111;
+    border-color: #111;
+}
+
+/* ============================================================
+   カートフッター（合計・購入手続きボタン）
+   サイドバーなし・全幅・右寄せ
+   ============================================================ */
+
+.cart-footer {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 40px 80px;
+    border-top: 1px solid #eee;
+}
+
+.cart-footer-inner {
+    max-width: 360px;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cart-footer-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.cart-footer-label {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: #888;
+    text-transform: uppercase;
+}
+
+.cart-footer-amount {
+    font-size: 20px;
+    letter-spacing: 0.05em;
+}
+
+.cart-footer-amount .woocommerce-Price-amount {
+    font-size: inherit;
+}
+
+/* WooCommerceのCSSと競合しないカスタムクラスを使用 */
+.cart-checkout-button {
+    display: block;
+    width: 100%;
+    padding: 18px 24px;
+    background-color: #111;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    transition: background-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.cart-checkout-button:hover {
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+}/* ============================================================
+   チェックアウトページ
+   ============================================================ */
+
+.checkout-wrapper {
+    padding-bottom: 100px;
+}
+
+.checkout-form {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 40px;
+}
+
+.checkout-container {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 60px;
+    align-items: start;
+}
+
+.checkout-section {
+    margin-bottom: 40px;
+}
+
+.checkout-section-title {
+    font-size: 11px;
+    font-weight: normal;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #888;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+}
+
+/* フォームフィールド */
+.woocommerce-checkout .form-row {
+    margin-bottom: 16px;
+}
+
+.woocommerce-checkout .form-row label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: #888;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+}
+
+.woocommerce-checkout .form-row input,
+.woocommerce-checkout .form-row select,
+.woocommerce-checkout .form-row textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 0;
+    font-size: 13px;
+    color: #333;
+    background-color: #fff;
+    appearance: none;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+}
+
+.woocommerce-checkout .form-row input:focus,
+.woocommerce-checkout .form-row select:focus,
+.woocommerce-checkout .form-row textarea:focus {
+    border-color: #111;
+}
+
+/* 注文内容テーブル */
+.checkout-sidebar .shop_table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.checkout-sidebar .shop_table th,
+.checkout-sidebar .shop_table td {
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.checkout-sidebar .shop_table tfoot .order-total th,
+.checkout-sidebar .shop_table tfoot .order-total td {
+    font-size: 15px;
+    border-bottom: none;
+    padding-top: 16px;
+}
+
+/* 支払い方法 */
+#payment {
+    margin-top: 24px;
+}
+
+#payment .wc_payment_methods {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+    border: 1px solid #eee;
+}
+
+#payment .wc_payment_methods li {
+    padding: 16px;
+    border-bottom: 1px solid #eee;
+    font-size: 13px;
+}
+
+#payment .wc_payment_methods li:last-child {
+    border-bottom: none;
+}
+
+/* 注文確定ボタン */
+#place_order {
+    display: block;
+    width: 100%;
+    padding: 16px 24px;
+    background-color: #111;
+    color: #fff;
+    border: none;
+    border-radius: 0;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+#place_order:hover {
+    background-color: #333;
+}

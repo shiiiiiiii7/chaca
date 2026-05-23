@@ -1,0 +1,7 @@
+wp-config.php
+wp-admin/
+wp-includes/
+wp-content/plugins/
+wp-content/uploads/
+wp-content/themes/twentytwentyfour/ (※使わない標準テーマなど)
+.DS_Store

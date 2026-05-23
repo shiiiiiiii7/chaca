@@ -1,7 +1,7 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 
-$checkout = WC()->checkout();
+$checkout = WC()->checkout();//オブジェクトの取得処理を追加
 
 // ログイン中でなくログインが必要な場合
 if ( ! is_user_logged_in() && wc_get_page_id( 'myaccount' ) && 'yes' === get_option( 'woocommerce_enable_checkout_login_reminder' ) ) {

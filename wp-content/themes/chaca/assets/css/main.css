@@ -1158,6 +1158,35 @@ img {
     vertical-align: middle;
 }
 
+.checkout-order-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.checkout-order-item-thumbnail {
+    width: 56px;
+    min-width: 56px;
+    max-width: 56px;
+    overflow: hidden;
+}
+
+.checkout-order-item-thumbnail img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.checkout-order-item-details {
+    min-width: 0;
+}
+
+.checkout-order-item-details .product-quantity {
+    display: inline-block;
+    margin-top: 4px;
+    color: #666;
+}
+
 .checkout-sidebar .shop_table tfoot .order-total th,
 .checkout-sidebar .shop_table tfoot .order-total td {
     font-size: 15px;

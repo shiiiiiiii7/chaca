@@ -1164,6 +1164,50 @@ img {
     padding-top: 16px;
 }
 
+/* レスポンシブ対応 */
+@media (max-width: 960px) {
+    .checkout-form {
+        padding: 40px 20px;
+    }
+
+    .checkout-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .checkout-sidebar {
+        width: 100%;
+    }
+
+    .checkout-sidebar .shop_table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .checkout-sidebar .shop_table th,
+    .checkout-sidebar .shop_table td {
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 640px) {
+    .checkout-form {
+        padding: 24px 16px;
+    }
+
+    .checkout-section-title {
+        margin-bottom: 16px;
+    }
+
+    .woocommerce-checkout .form-row input,
+    .woocommerce-checkout .form-row select,
+    .woocommerce-checkout .form-row textarea {
+        padding: 12px 14px;
+    }
+}
+
 /* 支払い方法 */
 #payment {
     margin-top: 24px;

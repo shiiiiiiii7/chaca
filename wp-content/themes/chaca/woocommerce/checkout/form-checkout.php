@@ -11,10 +11,6 @@ if ( ! is_user_logged_in() && wc_get_page_id( 'myaccount' ) && 'yes' === get_opt
 
 <div class="checkout-wrapper">
 
-    <div class="cart-hero">
-        <h1 class="cart-title">Checkout</h1>
-        <p class="cart-sub">購入手続き</p>
-    </div>
 
     <?php do_action( 'woocommerce_before_checkout_form', $checkout ); ?>
 

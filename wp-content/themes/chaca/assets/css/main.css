@@ -315,7 +315,7 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #033a09;
+    background-color: #2E4600;
 }
 
 .hero-below-inner {
@@ -331,7 +331,7 @@ img {
    ============================================================ */
 
 .about-catch {
-    background-color: #033a09;
+    background-color: #2E4600;
     padding: 160px 40px;
     text-align: center;
 }
@@ -371,7 +371,7 @@ img {
    ============================================================ */
 
 .about-process {
-    background-color: #033a09;
+    background-color: #2E4600;
     padding: 40px 0 120px;
 }
 
@@ -451,7 +451,7 @@ img {
    ============================================================ */
 
 .about-philosophy {
-    background-color: #033a09;
+    background-color: #2E4600;
     padding: 160px 40px;
 }
 

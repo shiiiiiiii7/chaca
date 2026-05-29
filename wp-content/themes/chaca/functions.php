@@ -75,23 +75,29 @@ add_action('wp_ajax_get_product_stock', 'get_product_stock');
 add_action('wp_ajax_nopriv_get_product_stock', 'get_product_stock');
 
 function get_product_stock() {
-
     $product_id = intval($_POST['product_id']);
 
-    // ← この1行を追加：キャッシュをクリアしてDBから最新値を取得
-    clean_post_cache( $product_id );
+    // DBから直接取得
+    $stock = (int) get_post_meta( $product_id, '_stock', true );
 
-    $product = wc_get_product($product_id);
-
-    if (!$product) {
+    if ( $stock === null ) {
         wp_send_json_error();
     }
 
-    $stock = $product->get_stock_quantity();
+    // カート内の同商品の数量を引く
+    $in_cart = 0;
+    foreach ( WC()->cart->get_cart() as $item ) {
+        if ( (int) $item['product_id'] === $product_id ) {
+            $in_cart += $item['quantity'];
+        }
+    }
 
-    wp_send_json_success(array(
-        'stock' => $stock
-    ));
+    $available = $stock - $in_cart;
+
+    wp_send_json_success( array(
+        'stock'     => $stock,
+        'available' => $available,
+    ) );
 }
 
 // ==================================================

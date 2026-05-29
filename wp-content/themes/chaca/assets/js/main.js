@@ -81,37 +81,48 @@ document.addEventListener('DOMContentLoaded', function () {
 // 商品詳細ページ：在庫数リアルタイム更新
 // ============================================================
 
+// ============================================================
+// 商品詳細ページ：在庫数リアルタイム更新
+// ============================================================
+
+// 修正後：ローカルデクリメントをやめ、即座にAJAXで実在庫を取得する
 jQuery(document.body).on('added_to_cart', function (event, fragments, cart_hash, $button) {
 
     var productId = $button.data('product_id');
-    var quantity = $button.data('quantity') || 1;
-    
-    // single-product対応（詳細ページ）
+
     var stockEl = document.querySelector('.product-detail-stock[data-product-id="' + productId + '"]');
-    
-    // archive-product対応（一覧ページ）
     if (!stockEl) {
         stockEl = document.querySelector('.product-stock[data-product_id="' + productId + '"]');
     }
-    
     if (!stockEl) return;
 
-    var current  = parseInt(stockEl.getAttribute('data-stock')) || 0;
-    var newStock = current - quantity;
-    stockEl.setAttribute('data-stock', newStock);
+    // サーバーから実際の在庫を取得して表示を更新
+    jQuery.post(ajaxurl, {
+        action: 'get_product_stock',
+        product_id: productId
+    }, function(response) {
+        if (!response.success) return;
 
-    if (newStock <= 0) {
-        stockEl.textContent = '在庫切れ';
-        stockEl.classList.add('disabled');
-        stockEl.setAttribute('aria-disabled', 'true');
-        stockEl.onclick = function() { return false; };
-        $button
-            .addClass('disabled')
-            .attr('aria-disabled', 'true')
-            .text('在庫切れ');
-    } else {
-        stockEl.textContent = '在庫' + newStock + '個';
-    }
+        var newStock = response.data.stock;
+        stockEl.setAttribute('data-stock', newStock);
+
+        if (newStock <= 0) {
+            stockEl.textContent = '在庫切れ';
+            stockEl.classList.add('disabled');
+            stockEl.setAttribute('aria-disabled', 'true');
+            if (stockEl.tagName === 'A') {
+                stockEl.onclick = function() { return false; };
+            }
+            $button
+                .addClass('disabled')
+                .attr('aria-disabled', 'true')
+                .text('在庫切れ');
+        } else {
+            stockEl.textContent = '在庫' + newStock + '個';
+            stockEl.classList.remove('disabled');
+            stockEl.removeAttribute('aria-disabled');
+        }
+    });
 });
 
 // ============================================================

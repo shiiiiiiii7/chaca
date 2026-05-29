@@ -100,13 +100,6 @@ jQuery(document.body).on('added_to_cart', function (event, fragments, cart_hash,
     var newStock = current - quantity;
     stockEl.setAttribute('data-stock', newStock);
 
-    // データベースの在庫も減らす
-    jQuery.post(ajaxurl, {
-        action: 'reduce_product_stock',
-        product_id: productId,
-        quantity: quantity
-    });
-
     if (newStock <= 0) {
         stockEl.textContent = '在庫切れ';
         stockEl.classList.add('disabled');

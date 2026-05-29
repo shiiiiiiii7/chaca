@@ -77,9 +77,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-// ============================================================
-// 商品詳細ページ：在庫数リアルタイム更新
-// ============================================================
 
 // ============================================================
 // 商品詳細ページ：在庫数リアルタイム更新
@@ -126,13 +123,14 @@ document.addEventListener('change', function(e) {
 // updateStockDisplay の直前に追加
 function updateStockElement(stockEl, stock, available) {
     var productId = stockEl.getAttribute('data-product-id') || stockEl.getAttribute('data-product_id');
+
+    // 詳細ページのカートボタンのみ対象（一覧ページの在庫ボタン自体は別途処理）
     var addBtn = document.querySelector(
-        '.add_to_cart_button[data-product_id="' + productId + '"], ' +
         '.single_add_to_cart_button[data-product_id="' + productId + '"]'
     );
 
     var display = (typeof available !== 'undefined') ? available : stock;
-    stockEl.setAttribute('data-stock', stock);
+    stockEl.setAttribute('data-stock', display);
 
     if (display <= 0) {
         stockEl.textContent = '在庫切れ';
@@ -145,10 +143,12 @@ function updateStockElement(stockEl, stock, available) {
             addBtn.textContent = '在庫切れ';
         }
     } else {
+        // 一覧ページの在庫ボタン（.product-stock）は在庫数をテキストで表示
         stockEl.textContent = '在庫' + display + '個';
         stockEl.classList.remove('disabled');
         stockEl.removeAttribute('aria-disabled');
         if (stockEl.tagName === 'A') stockEl.onclick = null;
+        // 詳細ページのカートボタンは「カートに追加」に戻す
         if (addBtn) {
             addBtn.classList.remove('disabled');
             addBtn.removeAttribute('aria-disabled');
@@ -156,7 +156,6 @@ function updateStockElement(stockEl, stock, available) {
         }
     }
 }
-
 function updateStockDisplay() {
     var detailStocks  = document.querySelectorAll('.product-detail-stock[data-product-id]');
     var archiveStocks = document.querySelectorAll('.product-stock[data-product_id]');

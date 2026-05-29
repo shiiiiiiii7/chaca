@@ -16,7 +16,6 @@ if ( ! is_user_logged_in() && wc_get_page_id( 'myaccount' ) && 'yes' === get_opt
 
     <form name="checkout" method="post" class="checkout-form woocommerce-checkout"
         action="<?php echo esc_url( wc_get_checkout_url() ); ?>"
-        enctype="multipart/form-data">
 
         <div class="checkout-container">
 

@@ -102,26 +102,7 @@ jQuery(document.body).on('added_to_cart', function (event, fragments, cart_hash,
         product_id: productId
     }, function(response) {
         if (!response.success) return;
-
-        var newStock = response.data.stock;
-        stockEl.setAttribute('data-stock', newStock);
-
-        if (newStock <= 0) {
-            stockEl.textContent = '在庫切れ';
-            stockEl.classList.add('disabled');
-            stockEl.setAttribute('aria-disabled', 'true');
-            if (stockEl.tagName === 'A') {
-                stockEl.onclick = function() { return false; };
-            }
-            $button
-                .addClass('disabled')
-                .attr('aria-disabled', 'true')
-                .text('在庫切れ');
-        } else {
-            stockEl.textContent = '在庫' + newStock + '個';
-            stockEl.classList.remove('disabled');
-            stockEl.removeAttribute('aria-disabled');
-        }
+        updateStockElement(stockEl, response.data.stock, response.data.available);
     });
 });
 
@@ -142,55 +123,59 @@ document.addEventListener('change', function(e) {
 // 在庫情報の定期同期
 // ============================================================
 
+// updateStockDisplay の直前に追加
+function updateStockElement(stockEl, stock, available) {
+    var productId = stockEl.getAttribute('data-product-id') || stockEl.getAttribute('data-product_id');
+    var addBtn = document.querySelector(
+        '.add_to_cart_button[data-product_id="' + productId + '"], ' +
+        '.single_add_to_cart_button[data-product_id="' + productId + '"]'
+    );
+
+    var display = (typeof available !== 'undefined') ? available : stock;
+    stockEl.setAttribute('data-stock', stock);
+
+    if (display <= 0) {
+        stockEl.textContent = '在庫切れ';
+        stockEl.classList.add('disabled');
+        stockEl.setAttribute('aria-disabled', 'true');
+        if (stockEl.tagName === 'A') stockEl.onclick = function(){ return false; };
+        if (addBtn) {
+            addBtn.classList.add('disabled');
+            addBtn.setAttribute('aria-disabled', 'true');
+            addBtn.textContent = '在庫切れ';
+        }
+    } else {
+        stockEl.textContent = '在庫' + display + '個';
+        stockEl.classList.remove('disabled');
+        stockEl.removeAttribute('aria-disabled');
+        if (stockEl.tagName === 'A') stockEl.onclick = null;
+        if (addBtn) {
+            addBtn.classList.remove('disabled');
+            addBtn.removeAttribute('aria-disabled');
+            addBtn.textContent = 'カートに追加';
+        }
+    }
+}
+
 function updateStockDisplay() {
-    // single-product（詳細ページ）の在庫要素を取得
-    var detailStocks = document.querySelectorAll('.product-detail-stock[data-product-id]');
-    
-    // archive-product（一覧ページ）の在庫要素を取得
+    var detailStocks  = document.querySelectorAll('.product-detail-stock[data-product-id]');
     var archiveStocks = document.querySelectorAll('.product-stock[data-product_id]');
-    
-    // 両方を結合
-    var allStocks = Array.from(detailStocks).concat(Array.from(archiveStocks));
-    
+    var allStocks     = Array.from(detailStocks).concat(Array.from(archiveStocks));
+
     if (allStocks.length === 0) return;
-    
-    // 各製品の在庫をAJAXで取得して更新
+
     allStocks.forEach(function(stockEl) {
         var productId = stockEl.getAttribute('data-product-id') || stockEl.getAttribute('data-product_id');
-        
+
         jQuery.post(ajaxurl, {
             action: 'get_product_stock',
             product_id: productId
         }, function(response) {
             if (!response.success) return;
-            
-            var newStock = response.data.stock;
-            var currentStock = parseInt(stockEl.getAttribute('data-stock')) || 0;
-            
-            // 在庫が変更された場合のみ更新
-            if (newStock !== currentStock) {
-                stockEl.setAttribute('data-stock', newStock);
-                
-                if (newStock <= 0) {
-                    stockEl.textContent = '在庫切れ';
-                    stockEl.classList.add('disabled');
-                    stockEl.setAttribute('aria-disabled', 'true');
-                    if (stockEl.tagName === 'A') {
-                        stockEl.onclick = function() { return false; };
-                    }
-                } else {
-                    stockEl.textContent = '在庫' + newStock + '個';
-                    stockEl.classList.remove('disabled');
-                    stockEl.removeAttribute('aria-disabled');
-                    if (stockEl.tagName === 'A') {
-                        stockEl.onclick = null;
-                    }
-                }
-            }
+            updateStockElement(stockEl, response.data.stock, response.data.available);
         });
     });
 }
-
 // ページ読み込み時と5秒ごとに在庫を同期
 if (document.querySelectorAll('.product-detail-stock[data-product-id], .product-stock[data-product_id]').length > 0) {
     updateStockDisplay();

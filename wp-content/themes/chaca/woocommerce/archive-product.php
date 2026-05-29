@@ -24,11 +24,15 @@
                                 <h2 class="product-name"><?php the_title(); ?></h2>
                                 <p class="product-price"><?php echo wc_price( get_post_meta( get_the_ID(), '_regular_price', true ) ); ?></p>
                                 <?php if ( $managing ) : ?>
-                                    <p class="product-stock"
+                                    <?php $is_out = $stock <= 0; ?>
+                                    <a class="product-stock add_to_cart_button ajax_add_to_cart product_type_simple<?php echo $is_out ? ' disabled' : ''; ?>"
+                                       href="<?php echo esc_url( '?add-to-cart=' . get_the_ID() ); ?>"
+                                       data-product_id="<?php echo esc_attr( get_the_ID() ); ?>"
+                                       data-quantity="1"
                                        data-stock="<?php echo esc_attr( $stock ); ?>"
-                                       data-product-id="<?php echo esc_attr( get_the_ID() ); ?>">
+                                       <?php echo $is_out ? 'aria-disabled="true" onclick="return false;"' : ''; ?>>
                                         <?php echo $stock > 0 ? '在庫' . $stock . '個' : '在庫切れ'; ?>
-                                    </p>
+                                    </a>
                                 <?php endif; ?>
                             </div>
                         </a>

@@ -84,6 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
 jQuery(document.body).on('added_to_cart', function (event, fragments, cart_hash, $button) {
 
     var productId = $button.data('product_id');
+    var quantity = $button.data('quantity') || 1;
     
     // single-product対応（詳細ページ）
     var stockEl = document.querySelector('.product-detail-stock[data-product-id="' + productId + '"]');
@@ -96,8 +97,15 @@ jQuery(document.body).on('added_to_cart', function (event, fragments, cart_hash,
     if (!stockEl) return;
 
     var current  = parseInt(stockEl.getAttribute('data-stock')) || 0;
-    var newStock = current - 1;
+    var newStock = current - quantity;
     stockEl.setAttribute('data-stock', newStock);
+
+    // データベースの在庫も減らす
+    jQuery.post(ajaxurl, {
+        action: 'reduce_product_stock',
+        product_id: productId,
+        quantity: quantity
+    });
 
     if (newStock <= 0) {
         stockEl.textContent = '在庫切れ';

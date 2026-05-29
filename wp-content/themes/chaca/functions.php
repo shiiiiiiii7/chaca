@@ -78,6 +78,9 @@ function get_product_stock() {
 
     $product_id = intval($_POST['product_id']);
 
+    // ← この1行を追加：キャッシュをクリアしてDBから最新値を取得
+    clean_post_cache( $product_id );
+
     $product = wc_get_product($product_id);
 
     if (!$product) {

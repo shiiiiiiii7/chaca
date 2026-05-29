@@ -46,6 +46,13 @@ function chaca_scripts() {
         '1.0.0',
         true
     );
+    
+    // JavaScriptにajaxurlをローカライズ
+    wp_localize_script(
+        'chaca-main',
+        'ajaxurl',
+        admin_url('admin-ajax.php')
+    );
 
     wp_enqueue_script('wc-cart-fragments');
 }
@@ -81,6 +88,31 @@ function get_product_stock() {
 
     wp_send_json_success(array(
         'stock' => $stock
+    ));
+}
+
+// ==================================================
+// AJAX：在庫を減らす
+// ==================================================
+
+add_action('wp_ajax_reduce_product_stock', 'reduce_product_stock');
+add_action('wp_ajax_nopriv_reduce_product_stock', 'reduce_product_stock');
+
+function reduce_product_stock() {
+
+    $product_id = intval($_POST['product_id']);
+    $quantity = intval($_POST['quantity']) ?: 1;
+
+    $product = wc_get_product($product_id);
+
+    if (!$product || !$product->managing_stock()) {
+        wp_send_json_error();
+    }
+
+    $new_stock = wc_update_product_stock($product_id, -$quantity, 'decrease');
+
+    wp_send_json_success(array(
+        'stock' => $new_stock
     ));
 }
 

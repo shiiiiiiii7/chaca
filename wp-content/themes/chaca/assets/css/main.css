@@ -1242,15 +1242,84 @@ img {
     }
 }
 
+/* 画面幅が768px以下のデバイス向けのスタイル */
+@media screen and (max-width: 768px) {
+    /* 1. コンテナ全体の余白調整 */
+    .site-header,
+    .site-footer,
+    section.about-catch,
+    section.about-philosophy {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    /* 2. セクション内の上下パディングの調整（モバイルで見やすく） */
+    section.about-catch,
+    section.about-philosophy {
+        padding-top: 80px !important;
+        padding-bottom: 80px !important;
+    }
+
+    /* 3. フレックスボックス要素を縦並びに（もし横並びになっている場合） */
+    .hero,
+    .hero-below {
+        flex-direction: column !important;
+    }
+
+    /* 4. 画像などの要素を画面幅に合わせる */
+    img, 
+    video, 
+    iframe {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* 5. ヘッダー内のナビゲーションやロゴの調整（例：中央寄せ） */
+    .header-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+/* 画面幅が768px以下の時の設定 */
+@media screen and (max-width: 768px) {
+  .about-process-step {
+    /* 横並びを解除して1列にする */
+    grid-template-columns: 1fr !important;
+    min-height: auto !important;
+  }
+
+  .about-process-text {
+    /* 左右の大きな余白を調整し、上下の余白を確保する */
+    padding: 40px 20px !important;
+    /* テキストを画像の下に配置（HTMLの順序に関わらず） */
+    order: 2;
+  }
+
+  .about-process-image {
+    /* 画像を上に配置 */
+    order: 1;
+    /* 高さを自動調整し、適切な比率を保つ（必要に応じて調整） */
+    height: 300px !important; 
+  }
+
+  /* 逆順（reverse）の設定がある場合も縦並びを維持 */
+  .about-process-step--reverse {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+}
+
 @media (max-width: 640px) {
     .checkout-form {
         padding: 24px 16px;
     }
-
+    
     .checkout-section-title {
         margin-bottom: 16px;
     }
-
+    
     .woocommerce-checkout .form-row input,
     .woocommerce-checkout .form-row select,
     .woocommerce-checkout .form-row textarea {
@@ -1298,4 +1367,11 @@ img {
 
 #place_order:hover {
     background-color: #333;
+    /* 画面幅が480px以下の非常に小さいデバイス向け */
+    @media screen and (max-width: 480px) {
+        /* フォントサイズの微調整 */
+        h1 { font-size: 1.5rem; }
+        h2 { font-size: 1.3rem; }
+        body { font-size: 14px; }
+    }
 }

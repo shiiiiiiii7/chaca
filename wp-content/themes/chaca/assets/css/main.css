@@ -1245,19 +1245,26 @@ img {
 /* 画面幅が768px以下のデバイス向けのスタイル */
 @media screen and (max-width: 768px) {
     /* 1. コンテナ全体の余白調整 */
-    .site-header,
+    .site-header{
+        display: flex;
+        padding-left: 20px ;
+        padding-right: 20px !
+    ;
+        height: 80px;
+        justify-content: center;
+    }
     .site-footer,
     section.about-catch,
     section.about-philosophy {
-        padding-left: 20px !important;
-        padding-right: 20px !important;
+        padding-left: 20px ;
+        padding-right: 20px ;
     }
 
     /* 2. セクション内の上下パディングの調整（モバイルで見やすく） */
     section.about-catch,
     section.about-philosophy {
-        padding-top: 80px !important;
-        padding-bottom: 80px !important;
+        padding-top: 80px ;
+        padding-bottom: 80px ;
     }
 
     /* 3. フレックスボックス要素を縦並びに（もし横並びになっている場合） */
@@ -1277,7 +1284,7 @@ img {
     /* 5. ヘッダー内のナビゲーションやロゴの調整（例：中央寄せ） */
     .header-inner {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
         text-align: center;
     }
@@ -1308,6 +1315,31 @@ img {
   .about-process-step--reverse {
     display: flex !important;
     flex-direction: column !important;
+  }
+}
+/* 画面幅が768px以下の設定 */
+@media screen and (max-width: 768px) {
+  .products-grid {
+    /* 2列固定にする */
+    grid-template-columns: 1fr 1fr !important;
+    /* コンテナ左右に少し余白を作る */
+    padding: 0 15px 30px !important;
+  }
+
+  .product-item {
+    /* 商品自体の幅を100%にしてグリッドに合わせる */
+    width: 100% !important;
+  }
+
+  .product-image img {
+    /* 画像がはみ出さないように調整 */
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover;
+  }
+  .shop-container {
+    /* コンテナの左右の余白を減らす */
+    padding: 60px 25px !important;
   }
 }
 

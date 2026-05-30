@@ -45,7 +45,8 @@
             <div class="product-detail-description">
                 <?php the_content(); ?>
             </div>
-
+            <a href="<?php echo esc_url( wc_get_page_permalink( 'shop' ) ); ?>" class="product-back-button">← Shopへ戻る
+            </a>
 
         </div>
     </div>

@@ -714,6 +714,21 @@ img {
     padding-top: 20px;
 }
 
+.product-back-button {
+    display: inline-block;
+    margin-top: 2rem;
+    color: #333;
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid #333;
+    padding-bottom: 2px;
+    transition: opacity 0.2s;
+}
+
+.product-back-button:hover {
+    opacity: 0.6;
+}
 /* カートに追加ボタン */
 .product-detail-cart a.single_add_to_cart_button {
     display: block;
@@ -902,7 +917,6 @@ img {
 /* ============================================================
    カートページ（商品あり）
    ============================================================ */
-
 .cart-wrapper {
     padding-bottom: 0;
 }
@@ -1339,7 +1353,7 @@ img {
   }
   .shop-container {
     /* コンテナの左右の余白を減らす */
-    padding: 60px 25px !important;
+    padding: 10px 25px !important;
   }
 
 　.product-detail {
@@ -1364,6 +1378,15 @@ img {
     font-size: 20px;
     margin-top: 10px;
 }
+.cart-form {
+    padding: 60px 5px 0;
+}
+.page-container {
+    padding: 40px 30px;
+}
+.page-main {
+padding-top: 10px;
+}
 @media (max-width: 640px) {
     .checkout-form {
         padding: 24px 16px;
@@ -1378,7 +1401,6 @@ img {
     .woocommerce-checkout .form-row textarea {
         padding: 12px 14px;
     }
-
 
 /* 支払い方法 */
 #payment {

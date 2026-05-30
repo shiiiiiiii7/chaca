@@ -1341,8 +1341,29 @@ img {
     /* コンテナの左右の余白を減らす */
     padding: 60px 25px !important;
   }
-}
 
+　.product-detail {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.single-product-main {
+    padding: 50px 25px 100px ;
+}
+.product-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.product-detail-image img {
+    width: 100%;
+    height: 325px;
+    object-fit: cover;
+}
+.product-detail-name {
+    font-size: 20px;
+    margin-top: 10px;
+}
 @media (max-width: 640px) {
     .checkout-form {
         padding: 24px 16px;

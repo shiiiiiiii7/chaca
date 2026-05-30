@@ -1195,6 +1195,25 @@ img {
     padding-top: 16px;
 }
 
+/* メールアドレス横のアイコンをピンポイントで修正 */
+.woocommerce-customer-details--email::before {
+    content: "\f0e0" !important; /* Font Awesomeのメールアイコン */
+    font-family: "Font Awesome 6 Free" !important; /* フォントを強制指定 */
+    font-weight: 400 !important; /* Solidスタイルに必須の太さ */
+    display: inline-block;
+    margin-right: 8px; /* アイコンと文字の間の隙間 */
+    color: #3B6B8C ; /* アイコンの色を薄く */
+}
+
+/* ついでに電話番号横のアイコンも修正する場合 */
+.woocommerce-customer-details--phone::before {
+    content: "\f095" !important; /* 電話アイコン */
+    font-family: "Font Awesome 6 Free" !important;
+    font-weight: 900 !important;
+    display: inline-block;
+    margin-right: 8px;
+    color: #3B6B8C ; /* アイコンの色を薄く */
+}
 /* レスポンシブ対応 */
 @media (max-width: 960px) {
     .checkout-form {

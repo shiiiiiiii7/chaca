@@ -191,8 +191,8 @@ img {
 .hero-panel {
     position: absolute;
     top: 0;
-    width: 50%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background-image: url('../images/oranjet.jpg');
     background-size: 200%;
     background-position: center;

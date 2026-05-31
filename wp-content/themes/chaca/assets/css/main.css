@@ -1250,13 +1250,13 @@ img {
     .checkout-sidebar .shop_table {
         display: block;
         width: 100%;
-        overflow-x: auto;
+        overflow-x: visible;
         -webkit-overflow-scrolling: touch;
     }
 
     .checkout-sidebar .shop_table th,
     .checkout-sidebar .shop_table td {
-        white-space: nowrap;
+        white-space: normal;
     }
 }
 

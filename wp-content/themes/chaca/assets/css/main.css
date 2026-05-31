@@ -191,8 +191,8 @@ img {
 .hero-panel {
     position: absolute;
     top: 0;
-    width: 100%;
-    height: 100vh;
+    width: 50%;
+    height: 100%;
     background-image: url('../images/oranjet.jpg');
     background-size: 200%;
     background-position: center;
@@ -1463,4 +1463,28 @@ padding-top: 10px;
     }
 }
 }
+}
+
+@media (max-width: 480px) {
+  ul.woocommerce-order-overview.order_details {
+    display: flex;
+    flex-wrap: wrap; /* 折り返しを許可 */
+    padding: 0;
+    list-style: none;
+  }
+
+  /* 全体の基本設定：基本は100%（縦並び） */
+  ul.woocommerce-order-overview.order_details li {
+    width: 100%;
+    border-right: none;
+    margin-bottom: 15px;
+  }
+
+  /* 1番目（注文番号）と 2番目（日付）だけ 50% にして横並びにする */
+  ul.woocommerce-order-overview.order_details li.order,
+  ul.woocommerce-order-overview.order_details li.date {
+    width: 50%;
+    /* 横並びの間に境界線が必要な場合はここで再設定 */
+    /* border-right: 1px dashed #d3ced2; */
+  }
 }

@@ -1209,6 +1209,10 @@ img {
     padding-top: 16px;
 }
 
+.woocommerce ul.order_details li{
+    border-right: none;
+}
+
 /* メールアドレス横のアイコンをピンポイントで修正 */
 .woocommerce-customer-details--email::before {
     content: "\f0e0" !important; /* Font Awesomeのメールアイコン */

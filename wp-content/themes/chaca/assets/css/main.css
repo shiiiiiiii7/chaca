@@ -828,8 +828,9 @@ img {
 .cart-empty-button {
     display: inline-block;
     padding: 16px 48px;
-    background-color: #111;
+    background-color: #0889ec;
     color: #fff;
+    border-radius: 4px;
     text-decoration: none;
     font-size: 13px;
     letter-spacing: 0.2em;
@@ -837,7 +838,7 @@ img {
 }
 
 .cart-empty-button:hover {
-    background-color: #333;
+    background-color: #0358ec;
     color: #fff;
     text-decoration: none;
 }
@@ -1072,8 +1073,9 @@ img {
     display: block;
     width: 100%;
     padding: 18px 24px;
-    background-color: #111;
+    background-color: #0889ec;
     color: #fff;
+    border-radius: 4px;
     text-align: center;
     text-decoration: none;
     font-size: 13px;
@@ -1083,7 +1085,7 @@ img {
 }
 
 .cart-checkout-button:hover {
-    background-color: #333;
+    background-color: #0358ec;
     color: #fff;
     text-decoration: none;
 }/* ============================================================
@@ -1445,7 +1447,7 @@ padding-top: 10px;
     display: block;
     width: 100%;
     padding: 16px 24px;
-    background-color: #111;
+    background-color: #0889ec;
     color: #fff;
     border: none;
     border-radius: 0;
@@ -1457,7 +1459,7 @@ padding-top: 10px;
 }
 
 #place_order:hover {
-    background-color: #333;
+    background-color: #0358ec;
     /* 画面幅が480px以下の非常に小さいデバイス向け */
     @media screen and (max-width: 480px) {
         /* フォントサイズの微調整 */
@@ -1490,5 +1492,64 @@ padding-top: 10px;
     width: 50%;
     /* 横並びの間に境界線が必要な場合はここで再設定 */
     /* border-right: 1px dashed #d3ced2; */
+  }
+}
+
+/* フォーム要素のデザイン調整 */
+body .wpcf7-form {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+body .wpcf7-form p {
+  margin-bottom: 20px;
+}
+
+body .wpcf7-form-control-wrap {
+  display: block;
+  margin-top: 8px;
+}
+
+/* 入力欄：セレクタを重ねて優先度を確保 */
+body .wpcf7-form input.wpcf7-text,
+body .wpcf7-form textarea.wpcf7-textarea,
+body .wpcf7-form select.wpcf7-select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* 送信ボタン */
+body .wpcf7-form input.wpcf7-submit {
+  background-color: #0889ec;
+  color: #fff;
+  padding: 12px 40px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  width: auto;
+  -webkit-appearance: none;
+}
+
+body .wpcf7-form input.wpcf7-submit:hover {
+  background-color: #0358ec;
+}
+
+/* レスポンシブ対応 */
+@media screen and (max-width: 768px) {
+  body .page-container {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  body .header-inner,
+  body .page-container,
+  body .footer-inner {
+    padding-left: 25px;
+    padding-right: 25px;
   }
 }

@@ -1534,6 +1534,7 @@ body .wpcf7-form input.wpcf7-submit {
   transition: background-color 0.3s;
   width: auto;
   -webkit-appearance: none;
+  appearance: none;
 }
 
 body .wpcf7-form input.wpcf7-submit:hover {

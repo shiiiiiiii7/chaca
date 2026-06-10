@@ -6,7 +6,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Zen Kaku Gothic New', sans-serif !important;
+    font-family: 'Zen Kaku Gothic New', sans-serif;
 }
 
 html {
@@ -15,11 +15,12 @@ html {
 
 body {
     overflow-x: hidden;
-    font-family: 'Zen Kaku Gothic New', sans-serif !important;
+    font-family: 'Zen Kaku Gothic New', sans-serif;
     font-size: 16px;
     line-height: 1.8;
     color: #333;
     background-color: #ffffff;
+    transform: none;
 }
 
 a {
@@ -1211,6 +1212,14 @@ img {
     padding-top: 16px;
 }
 
+#place_order {
+    background-color: #0889ec; /* ID指定は強いのでこれだけで上書き可能 */
+}
+#place_order:hover {
+    background-color: #0358ec;
+    color: #fff;
+    text-decoration: none;
+}
 .woocommerce ul.order_details li{
     border-right: none;
 }
@@ -1527,6 +1536,7 @@ body .wpcf7-form input.wpcf7-submit {
   background-color: #0889ec;
   color: #fff;
   padding: 12px 40px;
+
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -1552,5 +1562,8 @@ body .wpcf7-form input.wpcf7-submit:hover {
   body .footer-inner {
     padding-left: 25px;
     padding-right: 25px;
+  }
+  body .wpcf7-form input.wpcf7-submit{
+    margin-bottom: 40px;
   }
 }

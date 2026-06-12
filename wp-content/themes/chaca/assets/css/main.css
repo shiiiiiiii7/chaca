@@ -1194,6 +1194,7 @@ img {
     width: 100%;
     height: auto;
     display: block;
+    border-radius: 2px;
 }
 
 .checkout-order-item-details {
@@ -1324,7 +1325,7 @@ img {
     position: absolute;
     top: 0;
     width: 100%;
-    height: 100vh;
+    height: 100dvh;
     background-image: url('../images/oranjet.jpg');
     background-size: 200%;
     background-position: center;

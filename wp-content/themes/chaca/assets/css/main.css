@@ -147,7 +147,7 @@ img {
    ============================================================ */
 
 .site-footer {
-    position: fixed;
+    position: static;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -354,7 +354,7 @@ img {
 }
 
 .about-catch-title {
-    font-size: 52px;
+    font-size: 30px;
     font-weight: bold;
     letter-spacing: 0.1em;
     line-height: 1.7;
@@ -417,7 +417,7 @@ img {
 }
 
 .about-process-title {
-    font-size: 34px;
+    font-size: 20px;
     font-weight: bold;
     letter-spacing: 0.1em;
     line-height: 1.7;
@@ -464,7 +464,7 @@ img {
 }
 
 .about-philosophy-line {
-    font-size: 22px;
+    font-size: 16px;
     letter-spacing: 0.15em;
     line-height: 2.4;
     color: #f5f0e8;
@@ -508,7 +508,7 @@ img {
 }
 
 .about-cta-title {
-    font-size: 36px;
+    font-size: 25px;
     font-weight: bold;
     letter-spacing: 0.1em;
     line-height: 1.8;
@@ -964,6 +964,7 @@ img {
     height: 80px;
     object-fit: cover;
     display: block;
+    border-radius: 3px;
 }
 
 .cart-item-remove {
@@ -1285,6 +1286,7 @@ img {
     .site-footer,
     section.about-catch,
     section.about-philosophy {
+
         padding-left: 20px ;
         padding-right: 20px ;
     }

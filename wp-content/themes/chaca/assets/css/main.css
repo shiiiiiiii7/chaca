@@ -575,7 +575,7 @@ img {
    ============================================================ */
 
 .shop-main {
-    min-height: 100vh;
+    min-height: 100dvh;
     padding-top: 80px;
 }
 
@@ -799,7 +799,7 @@ img {
    ============================================================ */
 
 .page-main {
-    min-height: 100vh;
+    min-height: 100dvh;
     padding-top: 100px;
 }
 

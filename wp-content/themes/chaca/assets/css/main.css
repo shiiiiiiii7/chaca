@@ -59,7 +59,7 @@ img {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     gap: 15px;
     padding: 10px;
@@ -79,7 +79,7 @@ img {
 .nav-list {
     list-style: none;
     display: flex;
-    gap: 32px;
+    gap: 60px;
 }
 
 .nav-list a {
@@ -1233,7 +1233,7 @@ img {
     font-weight: 400 !important; /* Solidスタイルに必須の太さ */
     display: inline-block;
     margin-right: 8px; /* アイコンと文字の間の隙間 */
-    color: #3B6B8C ; /* アイコンの色を薄く */
+    color: #0358ec ; /* アイコンの色を薄く */
 }
 
 /* ついでに電話番号横のアイコンも修正する場合 */
@@ -1243,7 +1243,7 @@ img {
     font-weight: 900 !important;
     display: inline-block;
     margin-right: 8px;
-    color: #3B6B8C ; /* アイコンの色を薄く */
+    color: #0358ec ; /* アイコンの色を薄く */
 }
 /* レスポンシブ対応 */
 @media (max-width: 960px) {

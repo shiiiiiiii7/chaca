@@ -381,7 +381,6 @@ img {
     display: grid;
     grid-template-columns: 1fr 1fr;
     min-height: 580px;
-    border-top: 1px solid #222;
 }
 
 .about-process-step--reverse {
